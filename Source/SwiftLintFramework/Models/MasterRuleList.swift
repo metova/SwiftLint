@@ -41,6 +41,11 @@ public struct RuleList {
 }
 
 public let masterRuleList = RuleList(rules:
+    
+    // custom rules
+    StatementPositionRule.self,
+    CuddlingRule.self,
+    
     ClosingBraceRule.self,
     ColonRule.self,
     CommaRule.self,
@@ -64,7 +69,6 @@ public let masterRuleList = RuleList(rules:
     OpeningBraceRule.self,
     OperatorFunctionWhitespaceRule.self,
     ReturnArrowWhitespaceRule.self,
-    StatementPositionRule.self,
     TodoRule.self,
     TrailingNewlineRule.self,
     TrailingSemicolonRule.self,
