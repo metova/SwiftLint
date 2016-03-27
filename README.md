@@ -17,8 +17,20 @@ of your source files for more accurate results.
 
 Using [Homebrew](http://brew.sh/)
 
+If  swiftlint was previously installed, run: 
+```	
+$ brew uninstall swiftlint
 ```
-brew install swiftlint
+
+If you previously tapped Metova's homebrew tap:
+```
+$ brew untap metova/tap
+```
+
+Then install:
+```
+$ brew tap metova/tap
+$ brew install metova/tap/swiftlint
 ```
 
 You can also install SwiftLint by downloading `SwiftLint.pkg` from the
