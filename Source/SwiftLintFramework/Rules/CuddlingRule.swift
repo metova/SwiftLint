@@ -72,7 +72,7 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
 
     // MARK: - Private
 
-    private let pattern = "(?:[ ]*)\\}(?:[^\\n]*|[ ]*)\\b(else|catch)\\b(?:[ ]*)\\{"
+    private let pattern = "(?:[ ]*)\\}(?:[^\\n]*|[ ]*)\\b(else|catch|else\\sif)\\b(?:[ ]*)\\b((?:[ ]*)|\\{)"
 
     private func violationRangesInFile(file: File, withPattern pattern: String) -> [NSRange] {
         return file.matchPattern(pattern).filter { range, syntaxKinds in
