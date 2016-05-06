@@ -66,7 +66,7 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
             if isElseIf || isCatch {
                 violator.stringByReplacingFirstOccurrenceOfString("{", withString: "")
             }
-            let replaceString = isElseIf ? "" : "{"
+            let replaceString = isElseIf || isCatch ? "" : "{"
             contents = regularExpression.stringByReplacingMatchesInString(contents,
                                                                           options: [], range: range, withTemplate: "\(leadingSpaces)}\n\(leadingSpaces)$1 \(replaceString)")
             let location = Location(file: file, characterOffset: range.location)
