@@ -61,6 +61,9 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
             let violator = (contents as NSString).substringWithRange(range) as String
             let leadingSpaces = violator.leadingWhitespace()
             let isElseIf = violator.containsString("else if")
+            if isElseIf {
+                contents.stringByReplacingFirstOccurrenceOfString("{", withString: "")
+            }
             contents = regularExpression.stringByReplacingMatchesInString(contents,
                                                                           options: [], range: range, withTemplate: "\(leadingSpaces)}\n\(leadingSpaces)$1 \(isElseIf ? "" : "{")")
             let location = Location(file: file, characterOffset: range.location)
@@ -83,7 +86,14 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
 }
 
 extension String {
-
+    
+    func stringByReplacingFirstOccurrenceOfString(target: String, withString replaceString: String) -> String {
+        if let range = self.rangeOfString(target) {
+            return self.stringByReplacingCharactersInRange(range, withString: replaceString)
+        }
+        return self
+    }
+    
     private func leadingCharactersInSet(characterSet: NSCharacterSet) -> String {
         var count = 0
         for char in utf16.lazy {
