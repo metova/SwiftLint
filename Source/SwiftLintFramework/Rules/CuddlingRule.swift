@@ -62,10 +62,11 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
             let leadingSpaces = violator.leadingWhitespace()
             let isElseIf = violator.containsString("else if")
             if isElseIf {
-                contents.stringByReplacingFirstOccurrenceOfString("{", withString: "")
+                violator.stringByReplacingFirstOccurrenceOfString("{", withString: "")
             }
+            let replaceString = isElseIf ? "" : "{"
             contents = regularExpression.stringByReplacingMatchesInString(contents,
-                                                                          options: [], range: range, withTemplate: "\(leadingSpaces)}\n\(leadingSpaces)$1 \(isElseIf ? "" : "{")")
+                                                                          options: [], range: range, withTemplate: "\(leadingSpaces)}\n\(leadingSpaces)$1 \(replaceString)")
             let location = Location(file: file, characterOffset: range.location)
             corrections.append(Correction(ruleDescription: description, location: location))
         }
@@ -76,7 +77,7 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
 
     // MARK: - Private
 
-    private let pattern = "(?:[ ]*)\\}(?:[^\\n]*|[ ]*)\\b(else|catch|else\\sif)\\b(?:[ ]*)\\b((?:[ ]*)|\\{)"
+    private let pattern = "(?:[ ]*)\\}(?:[^\\n]*|[ ]*)\\b(else\\sif|else|catch)\\b(?:[ ]*)\\b((?:[ ]*)|\\{)"
 
     private func violationRangesInFile(file: File, withPattern pattern: String) -> [NSRange] {
         return file.matchPattern(pattern).filter { range, syntaxKinds in
