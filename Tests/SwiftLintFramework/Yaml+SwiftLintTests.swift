@@ -13,11 +13,6 @@ import Yaml
 
 class YamlSwiftLintTests: XCTestCase {
 
-    // protocol XCTestCaseProvider
-    lazy var allTests: [(String, () throws -> Void)] = [
-        ("testFlattenYaml", self.testFlattenYaml),
-    ]
-
     func testFlattenYaml() {
         let yamlResult = Yaml.load(getTestYaml())
         if let error = yamlResult.error {
@@ -54,7 +49,7 @@ class YamlSwiftLintTests: XCTestCase {
 
     func getTestYaml() -> String {
         #if SWIFT_PACKAGE
-            let path = "Source/SwiftLintFrameworkTests/Resources/test.yml"
+            let path = "Tests/SwiftLintFramework/Resources/test.yml"
                 .absolutePathRepresentation()
             if let ymlString = try? String(contentsOfFile: path) {
                 return ymlString
@@ -62,7 +57,7 @@ class YamlSwiftLintTests: XCTestCase {
         #else
             let testBundle = NSBundle(forClass: self.dynamicType)
             if let path = testBundle.pathForResource("test", ofType: "yml"),
-                let ymlString = try? String(contentsOfFile: path) {
+                ymlString = try? String(contentsOfFile: path) {
                     return ymlString
             }
         #endif

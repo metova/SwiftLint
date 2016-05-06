@@ -16,8 +16,10 @@ OUTPUT_PACKAGE=SwiftLint.pkg
 VERSION_STRING=$(shell agvtool what-marketing-version -terse1)
 COMPONENTS_PLIST=Source/swiftlint/Supporting Files/Components.plist
 
-SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-02-03-a
-SWIFT_BUILD_COMMAND=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/swift build
+SWIFT_SNAPSHOT=swift-DEVELOPMENT-SNAPSHOT-2016-04-12-a
+SWIFT_COMMAND=/Library/Developer/Toolchains/$(SWIFT_SNAPSHOT).xctoolchain/usr/bin/swift
+SWIFT_BUILD_COMMAND=$(SWIFT_COMMAND) build
+SWIFT_TEST_COMMAND=$(SWIFT_COMMAND) test
 
 .PHONY: all bootstrap clean install package test uninstall
 
@@ -33,7 +35,9 @@ test: clean bootstrap
 clean:
 	rm -f "$(OUTPUT_PACKAGE)"
 	rm -rf "$(TEMPORARY_FOLDER)"
-	$(BUILD_TOOL) $(XCODEFLAGS) clean
+	$(BUILD_TOOL) $(XCODEFLAGS) -configuration Debug clean
+	$(BUILD_TOOL) $(XCODEFLAGS) -configuration Release clean
+	$(BUILD_TOOL) $(XCODEFLAGS) -configuration Test clean
 
 install: uninstall package
 	sudo installer -pkg SwiftLint.pkg -target /
@@ -81,17 +85,15 @@ swift_snapshot_install:
 	curl https://swift.org/builds/development/xcode/$(SWIFT_SNAPSHOT)/$(SWIFT_SNAPSHOT)-osx.pkg -o swift.pkg
 	sudo installer -pkg swift.pkg -target /
 
-spm_bootstrap: spm_teardown
-	curl https://raw.githubusercontent.com/jpsim/SourceKitten/master/script/spm_bootstrap | bash -s $(SWIFT_SNAPSHOT)
-
-spm_teardown:
-	curl https://raw.githubusercontent.com/jpsim/SourceKitten/master/script/spm_teardown | bash
-
+# Use Xcode's swiftc
+spm: export SWIFT_EXEC=$(shell TOOLCHAINS= xcrun -find swiftc)
 spm:
 	$(SWIFT_BUILD_COMMAND)
 
+# Use Xcode's swiftc
+spm_test: export SWIFT_EXEC=$(shell TOOLCHAINS= xcrun -find swiftc)
 spm_test: spm
-	.build/Debug/SwiftLintFrameworkTests
+	$(SWIFT_TEST_COMMAND)
 
 spm_clean:
 	$(SWIFT_BUILD_COMMAND) --clean

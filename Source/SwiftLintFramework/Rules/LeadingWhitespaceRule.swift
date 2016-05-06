@@ -9,7 +9,7 @@
 import Foundation
 import SourceKittenFramework
 
-public struct LeadingWhitespaceRule: ConfigurationProviderRule {
+public struct LeadingWhitespaceRule: ConfigurationProviderRule, SourceKitFreeRule {
 
     public var configuration = SeverityConfiguration(.Warning)
 

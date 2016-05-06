@@ -26,13 +26,15 @@ extension Rule {
 public protocol OptInRule: Rule {}
 
 public protocol ConfigurationProviderRule: Rule {
-    typealias ConfigurationType: RuleConfiguration
+    associatedtype ConfigurationType: RuleConfiguration
     var configuration: ConfigurationType { get set }
 }
 
 public protocol CorrectableRule: Rule {
     func correctFile(file: File) -> [Correction]
 }
+
+public protocol SourceKitFreeRule: Rule {}
 
 // MARK: - ConfigurationProviderRule conformance to Configurable
 

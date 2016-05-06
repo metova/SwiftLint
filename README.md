@@ -57,6 +57,11 @@ fi
 
 ![](assets/runscript.png)
 
+#### Format on Save Xcode Plugin
+
+To run `swift autocorrect` on save in Xcode, install the
+[SwiftLintXcode](https://github.com/ypresto/SwiftLintXcode) plugin from Alcatraz.
+
 ### Atom
 
 To integrate SwiftLint with [Atom](https://atom.io/) install the
@@ -203,7 +208,7 @@ variable_name:
     - id
     - URL
     - GlobalAPIKey
-reporter: "csv" # reporter type (xcode, json, csv, checkstyle)
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
 ```
 
 #### Defining Custom Rules

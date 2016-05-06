@@ -26,7 +26,7 @@ extension String {
     }
 }
 
-public struct TrailingNewlineRule: CorrectableRule, ConfigurationProviderRule {
+public struct TrailingNewlineRule: CorrectableRule, ConfigurationProviderRule, SourceKitFreeRule {
 
     public var configuration = SeverityConfiguration(.Warning)
 

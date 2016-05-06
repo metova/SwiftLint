@@ -8,7 +8,7 @@
 
 import SourceKittenFramework
 
-public struct LineLengthRule: ConfigurationProviderRule {
+public struct LineLengthRule: ConfigurationProviderRule, SourceKitFreeRule {
     public var configuration = SeverityLevelsConfiguration(warning: 100, error: 200)
 
     public init() {}
