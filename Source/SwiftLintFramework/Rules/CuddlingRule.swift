@@ -61,7 +61,9 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
             let violator = (contents as NSString).substringWithRange(range) as String
             let leadingSpaces = violator.leadingWhitespace()
             let isElseIf = violator.containsString("else if")
-            if isElseIf {
+            let isCatch = violator.containsString("catch")
+
+            if isElseIf || isCatch {
                 violator.stringByReplacingFirstOccurrenceOfString("{", withString: "")
             }
             let replaceString = isElseIf ? "" : "{"
