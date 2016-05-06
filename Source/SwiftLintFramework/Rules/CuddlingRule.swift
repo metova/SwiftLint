@@ -60,8 +60,9 @@ public struct CuddlingRule: CorrectableRule, ConfigurationProviderRule {
         for range in matches.reverse() {
             let violator = (contents as NSString).substringWithRange(range) as String
             let leadingSpaces = violator.leadingWhitespace()
+            let isElseIf = violator.containsString("else if")
             contents = regularExpression.stringByReplacingMatchesInString(contents,
-                options: [], range: range, withTemplate: "\(leadingSpaces)}\n\(leadingSpaces)$1 {")
+                                                                          options: [], range: range, withTemplate: "\(leadingSpaces)}\n\(leadingSpaces)$1 \(isElseIf ? "" : "{")")
             let location = Location(file: file, characterOffset: range.location)
             corrections.append(Correction(ruleDescription: description, location: location))
         }
