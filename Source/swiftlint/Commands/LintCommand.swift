@@ -14,11 +14,11 @@ import SourceKittenFramework
 import SwiftLintFramework
 
 public struct LintCommand: CommandProtocol {
-    let verb = "lint"
-    let function = "Print lint warnings and errors (default command)"
+   public let verb = "lint"
+   public  let function = "Print lint warnings and errors (default command)"
 
     public init() { }
-    func run(_ options: LintOptions) -> Result<(), CommandantError<()>> {
+    public func run(_ options: LintOptions) -> Result<(), CommandantError<()>> {
         var fileBenchmark = Benchmark(name: "files")
         var ruleBenchmark = Benchmark(name: "rules")
         var violations = [StyleViolation]()
@@ -125,7 +125,7 @@ public struct LintCommand: CommandProtocol {
     }
 }
 
-struct LintOptions: OptionsProtocol {
+public struct LintOptions: OptionsProtocol {
     let path: String
     let useSTDIN: Bool
     let configurationFile: String
@@ -140,13 +140,13 @@ struct LintOptions: OptionsProtocol {
     let enableAllRules: Bool
 
     // swiftlint:disable line_length
-    static func create(_ path: String) -> (_ useSTDIN: Bool) -> (_ configurationFile: String) -> (_ strict: Bool) -> (_ lenient: Bool) -> (_ useScriptInputFiles: Bool) -> (_ benchmark: Bool) -> (_ reporter: String) -> (_ quiet: Bool) -> (_ cachePath: String) -> (_ ignoreCache: Bool) -> (_ enableAllRules: Bool) -> LintOptions {
+   public static func create(_ path: String) -> (_ useSTDIN: Bool) -> (_ configurationFile: String) -> (_ strict: Bool) -> (_ lenient: Bool) -> (_ useScriptInputFiles: Bool) -> (_ benchmark: Bool) -> (_ reporter: String) -> (_ quiet: Bool) -> (_ cachePath: String) -> (_ ignoreCache: Bool) -> (_ enableAllRules: Bool) -> LintOptions {
         return { useSTDIN in { configurationFile in { strict in { lenient in { useScriptInputFiles in { benchmark in { reporter in { quiet in { cachePath in { ignoreCache in { enableAllRules in
             self.init(path: path, useSTDIN: useSTDIN, configurationFile: configurationFile, strict: strict, lenient: lenient, useScriptInputFiles: useScriptInputFiles, benchmark: benchmark, reporter: reporter, quiet: quiet, cachePath: cachePath, ignoreCache: ignoreCache, enableAllRules: enableAllRules)
         }}}}}}}}}}}
     }
 
-    static func evaluate(_ mode: CommandMode) -> Result<LintOptions, CommandantError<CommandantError<()>>> {
+    public static func evaluate(_ mode: CommandMode) -> Result<LintOptions, CommandantError<CommandantError<()>>> {
         // swiftlint:enable line_length
         return create
             <*> mode <| pathOption(action: "lint")
