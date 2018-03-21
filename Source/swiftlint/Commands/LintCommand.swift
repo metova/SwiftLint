@@ -13,10 +13,11 @@ import Result
 import SourceKittenFramework
 import SwiftLintFramework
 
-struct LintCommand: CommandProtocol {
+public struct LintCommand: CommandProtocol {
     let verb = "lint"
     let function = "Print lint warnings and errors (default command)"
 
+    public init() { }
     func run(_ options: LintOptions) -> Result<(), CommandantError<()>> {
         var fileBenchmark = Benchmark(name: "files")
         var ruleBenchmark = Benchmark(name: "rules")
