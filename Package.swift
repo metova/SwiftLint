@@ -5,7 +5,7 @@ let package = Package(
     name: "SwiftLint",
     products: [
         .executable(name: "swiftlint", targets: ["swiftlint"]),
-        .library(name: "SwiftLintFramework", targets: ["SwiftLintFramework"])
+        .library(name: "OpenLintApi", targets: ["OpenLintApi"])
     ],
     dependencies: [
         .package(url: "https://github.com/Carthage/Commandant.git", from: "0.13.0"),
