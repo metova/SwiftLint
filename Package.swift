@@ -29,6 +29,12 @@ let package = Package(
                 "Yams",
             ]
         ),
+        .target(
+            name: "OpenLintApi",
+            dependencies: [
+                "swiftlint"
+                ]
+        ),
         .testTarget(
             name: "SwiftLintFrameworkTests",
             dependencies: [

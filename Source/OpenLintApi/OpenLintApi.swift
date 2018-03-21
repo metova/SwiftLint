@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import swiftlint
 
-public struct OpenApi {
+public struct OpenLintApi {
 
     public init () {
 
@@ -18,5 +19,6 @@ public struct OpenApi {
 
         print("will run lint command")
         let l = LintCommand()
+
     }
 }
