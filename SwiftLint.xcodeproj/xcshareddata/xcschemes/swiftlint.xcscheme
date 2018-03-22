@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
-               BuildableName = "swiftlint.app"
+               BlueprintIdentifier = "SwiftLint::swiftlint"
+               BuildableName = "swiftlint.framework"
                BlueprintName = "swiftlint"
                ReferencedContainer = "container:SwiftLint.xcodeproj">
             </BuildableReference>
@@ -34,7 +34,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0D1217619E87B05005E4BAA"
+               BlueprintIdentifier = "SwiftLint::SwiftLintFrameworkTests"
                BuildableName = "SwiftLintFrameworkTests.xctest"
                BlueprintName = "SwiftLintFrameworkTests"
                ReferencedContainer = "container:SwiftLint.xcodeproj">
@@ -44,8 +44,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
-            BuildableName = "swiftlint.app"
+            BlueprintIdentifier = "SwiftLint::swiftlint"
+            BuildableName = "swiftlint.framework"
             BlueprintName = "swiftlint"
             ReferencedContainer = "container:SwiftLint.xcodeproj">
          </BuildableReference>
@@ -70,8 +70,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
-            BuildableName = "swiftlint.app"
+            BlueprintIdentifier = "SwiftLint::swiftlint"
+            BuildableName = "swiftlint.framework"
             BlueprintName = "swiftlint"
             ReferencedContainer = "container:SwiftLint.xcodeproj">
          </BuildableReference>
@@ -107,8 +107,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0E7B63119E9C64500EDBA4D"
-            BuildableName = "swiftlint.app"
+            BlueprintIdentifier = "SwiftLint::swiftlint"
+            BuildableName = "swiftlint.framework"
             BlueprintName = "swiftlint"
             ReferencedContainer = "container:SwiftLint.xcodeproj">
          </BuildableReference>

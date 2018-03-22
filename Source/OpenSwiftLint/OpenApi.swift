@@ -18,16 +18,11 @@ public struct OpenApi {
 
     public func run() {
 
+        print("start")
         let lc = LintCommand()
         let arguments: ArgumentParser = ArgumentParser.init(["-- benchmark"])
         let lintOption = LintOptions.evaluate(.arguments(arguments))
-        let command =  try? lc.run(lintOption.dematerialize())
+        let _ =  try? lc.run(lintOption.dematerialize())
         print("did finish")
-        do {
-            try command?.dematerialize()
-        } catch {
-            print("error done")
-        }
-
     }
 }
