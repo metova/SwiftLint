@@ -4,8 +4,10 @@ import PackageDescription
 let package = Package(
     name: "SwiftLint",
     products: [
-        .executable(name: "swiftlint", targets: ["swiftlint"]),
-        .library(name: "OpenLintApi", targets: ["OpenLintApi"])
+        .library(name: "OpenSwiftLint", targets: ["OpenSwiftLint"]),
+        .library(name: "swiftlint", targets: ["swiftlint"]),
+        .library(name: "SwiftLintFramework", targets: ["SwiftLintFramework"])
+
     ],
     dependencies: [
         .package(url: "https://github.com/Carthage/Commandant.git", from: "0.13.0"),
@@ -14,6 +16,19 @@ let package = Package(
         .package(url: "https://github.com/scottrhoyt/SwiftyTextTable.git", from: "0.8.0"),
     ],
     targets: [
+        .target(
+            name: "OpenSwiftLint",
+            dependencies: [
+                   .target(name: "swiftlint"),
+                   .target(name: "SwiftLintFramework"),
+            ]//,
+            /*path: ".",
+            //exclude: [
+                "SwiftLintFramework",
+
+               "swiftlint"
+            ]*/
+        ),
         .target(
             name: "swiftlint",
             dependencies: [
@@ -29,17 +44,13 @@ let package = Package(
                 "Yams",
             ]
         ),
-        .target(
-            name: "OpenLintApi",
-            dependencies: [
-                "swiftlint"
-                ]
-        ),
+
         .testTarget(
             name: "SwiftLintFrameworkTests",
             dependencies: [
                 "SwiftLintFramework"
             ],
+        //    path: "Source",
             exclude: [
                 "Resources",
             ]
