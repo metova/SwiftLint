@@ -19,15 +19,8 @@ let package = Package(
         .target(
             name: "OpenSwiftLint",
             dependencies: [
-                   .target(name: "swiftlint"),
-                   .target(name: "SwiftLintFramework"),
-            ]//,
-            /*path: ".",
-            //exclude: [
-                "SwiftLintFramework",
-
-               "swiftlint"
-            ]*/
+                   "swiftlint"
+            ]
         ),
         .target(
             name: "swiftlint",
